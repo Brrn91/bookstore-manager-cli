@@ -1,0 +1,25 @@
+{
+  "name": "bookstore-manager-cli",
+  "version": "1.0.0",
+  "description": "O projeto tem como objetivo, consolidar os principais conhecimentos desenvolvidos ao longo da formação (módulo 1 - SCTEC), proporcionando uma experiência próxima do desenvolvimento de um sistema corporativo",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/main.ts",
+    "build": "tsc",
+    "start": "node dist/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "pg": "^8.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "@types/pg": "^8.20.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^6.0.3"
+  }
+}
