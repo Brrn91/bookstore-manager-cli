@@ -7,6 +7,9 @@
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "CommonJS",
+    "moduleResolution": "node10",
+    // Silencia avisos deprecatórios relacionados ao uso de opções antigas (ex: node10)
+    "ignoreDeprecations": "6.0",
     "target": "es2020",
     "types": [],
     // For nodejs:
@@ -30,7 +33,7 @@
     // Recommended Options
     "strict": true,
     "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
