@@ -20,4 +20,13 @@ export class AuthorRepository {
     ]);
     return result.rows[0];
   }
+
+  async update(id: number, author: Author): Promise<void> {
+    await pool.query(
+      "UPDATE authors SET name = $1, nationality = $2, birth_date = $3 WHERE id = $4",
+      [author.name, author.nationality, author.birthDate, id],
+    );
+  }
+
+  async delete() {}
 }
