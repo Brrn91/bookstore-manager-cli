@@ -1,5 +1,6 @@
 import { AuthorRepository } from "../repositories/AuthorRepository";
 import { Author } from "../models/Author";
+import { AppError } from "../utils/errors";
 
 export class AuthorService {
   private repository = new AuthorRepository();
@@ -15,5 +16,13 @@ export class AuthorService {
 
   async findById(id: number) {
     return await this.repository.findById(id);
+  }
+
+  async getById(id: number): Promise<Author> {
+    const author = await this.repository.findById(id);
+    if (!author) {
+      throw new AppError(`Autor com id ${id} não encontrado.`);
+    }
+    return author;
   }
 }
