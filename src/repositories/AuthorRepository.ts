@@ -8,4 +8,9 @@ export class AuthorRepository {
       [author.name, author.nationality, author.birthDate],
     );
   }
+
+  async findAll(): Promise<Author[]> {
+    const result = await pool.query("SELECT * FROM authors ORDER BY name ASC");
+    return result.rows;
+  }
 }
