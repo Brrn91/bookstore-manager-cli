@@ -13,4 +13,11 @@ export class AuthorRepository {
     const result = await pool.query("SELECT * FROM authors ORDER BY name ASC");
     return result.rows;
   }
+
+  async findById(id: number): Promise<Author | undefined> {
+    const result = await pool.query("SELECT * FROM authors WHERE id = $1", [
+      id,
+    ]);
+    return result.rows[0];
+  }
 }
