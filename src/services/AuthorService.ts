@@ -36,4 +36,9 @@ export class AuthorService {
     const author = new Author(name, nationality, birthDate);
     return await this.repository.update(id, author);
   }
+
+  async remove(id: number) {
+    await this.getById(id);
+    await this.repository.delete(id);
+  }
 }
