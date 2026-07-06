@@ -25,4 +25,15 @@ export class AuthorService {
     }
     return author;
   }
+
+  async update(
+    id: number,
+    name: string,
+    nationality: string,
+    birthDate: string,
+  ) {
+    await this.getById(id);
+    const author = new Author(name, nationality, birthDate);
+    return await this.repository.update(id, author);
+  }
 }
