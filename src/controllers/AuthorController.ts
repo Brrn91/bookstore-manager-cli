@@ -43,9 +43,27 @@ export class AuthorController {
       const nationality = await ask("Nova nacionalidade: ");
       const birthDate = await ask("Nova data de nascimento (AAAA-MM-DD): ");
 
-      const updateService = await this.service.update(id, name, nationality, birthDate);
-      console.log('\n✅ Autor atualizado com sucesso!')
+      const updateService = await this.service.update(
+        id,
+        name,
+        nationality,
+        birthDate,
+      );
+      console.log("\n✅ Autor atualizado com sucesso!");
     } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
+    }
+  }
+
+  async remove() {
+    try {
+      const id = await askNumber("ID do autor: ");
+      await this.service.remove(id);
+
+      console.log("\n✅ Autor deletado com sucesso!");
+    } catch (error){
       if (error instanceof Error) {
         console.log(error.message);
       }

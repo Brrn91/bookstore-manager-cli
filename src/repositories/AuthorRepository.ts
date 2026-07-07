@@ -28,7 +28,7 @@ export class AuthorRepository {
     );
   }
 
-  async delete(id: number): Promise<void> {
+  async remove(id: number): Promise<void> {
     await pool.query("DELETE FROM authors WHERE id = $1", [id]);
   }
 }

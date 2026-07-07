@@ -39,6 +39,6 @@ export class AuthorService {
 
   async remove(id: number) {
     await this.getById(id);
-    await this.repository.delete(id);
+    await this.repository.remove(id);
   }
 }
