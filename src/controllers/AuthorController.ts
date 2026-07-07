@@ -1,5 +1,6 @@
 import { AuthorService } from "../services/AuthorService";
 import { ask } from "../utils/inputHelper";
+import { askNumber } from "../utils/inputHelper";
 
 export class AuthorController {
   private service = new AuthorService();
@@ -21,5 +22,17 @@ export class AuthorController {
       console.log(author.name);
     }
     console.log("\n✅ Autores listados com sucesso!");
+  }
+
+  async findById() {
+    try {
+      const id = await askNumber("ID do autor: ");
+      const result = await this.service.getById(id);
+      console.log(result);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
+    }
   }
 }
