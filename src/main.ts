@@ -1,10 +1,10 @@
 import { testConnection } from "./database/connection";
-import { authorMenu } from "./menus/authorMenu";
+import { mainMenu } from "./menus/mainMenu";
 
 async function main(): Promise<void> {
   console.log("Iniciando BookStore Manager CLI");
   await testConnection();
-  await authorMenu();
+  await mainMenu();
 }
 
 main();
