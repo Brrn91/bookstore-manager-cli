@@ -13,4 +13,13 @@ export class AuthorController {
     await this.service.create(name, nationality, birthDate);
     console.log("\n✅ Autor cadastrado com sucesso!");
   }
+
+  async list() {
+    console.log("\n--- Listando Autores ---");
+    const listAuthors = await this.service.findAll();
+    for (const author of listAuthors) {
+      console.log(author.name);
+    }
+    console.log("\n✅ Autores listados com sucesso!");
+  }
 }
