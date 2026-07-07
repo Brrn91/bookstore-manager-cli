@@ -24,4 +24,28 @@ export class BookRepository {
         ORDER BY b.title ASC`);
     return result.rows;
   }
+
+  async findById(id: number): Promise<Book | undefined> {
+    const result = await pool.query("SELECT * FROM books WHERE id = $1", [id]);
+    return result.rows[0];
+  }
+
+  async update(id: number, books: Book): Promise<void> {
+    await pool.query(
+      "UPDATE books SET title = $1, author_id = $2, genre = $3, published_year = $4, total_copies = $5, available_copies = $6 WHERE id = $7",
+      [
+        books.title,
+        books.authorId,
+        books.genre,
+        books.publishedYear,
+        books.totalCopies,
+        books.availableCopies,
+        id,
+      ],
+    );
+  }
+
+  async remove(id: number): Promise<void> {
+    await pool.query("DELETE FROM books WHERE id = $1", [id]);
+  }
 }
