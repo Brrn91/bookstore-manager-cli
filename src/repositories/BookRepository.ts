@@ -48,4 +48,18 @@ export class BookRepository {
   async remove(id: number): Promise<void> {
     await pool.query("DELETE FROM books WHERE id = $1", [id]);
   }
+
+  async decrementAvailableCopies(id: number): Promise<void> {
+    await pool.query(
+      "UPDATE books SET available_copies = available_copies - 1 WHERE id = $1",
+      [id],
+    );
+  }
+
+  async incrementAvailableCopies(id: number): Promise<void> {
+    await pool.query(
+      "UPDATE books SET available_copies = available_copies + 1 WHERE id = $1",
+      [id],
+    );
+  }
 }
