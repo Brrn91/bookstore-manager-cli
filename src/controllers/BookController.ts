@@ -5,6 +5,7 @@ export class BookController {
   private service = new BookService();
 
   async create() {
+    try {
     console.log("\n--- Cadastrar Livro ---");
     const title = await ask("Título: ");
     const authorId = await askNumber("Autor(a): ");
@@ -12,7 +13,6 @@ export class BookController {
     const publishedYear = await askNumber("Ano de publicação: ");
     const totalCopies = await askNumber("Total de cópias: ");
 
-    try {
       await this.service.create(
         title,
         authorId,

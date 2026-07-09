@@ -5,17 +5,13 @@ export class ClientController {
   private service = new ClientService();
 
   async create() {
-    console.log("\n--- Cadastrar Cliente ---");
-    const name = await ask("Nome: ");
-    const email = await ask("E-mail: ");
-    const phone = await ask("Telefone: ");
-
     try {
-      await this.service.create(
-        name,
-        email,
-        phone,
-      );
+      console.log("\n--- Cadastrar Cliente ---");
+      const name = await ask("Nome: ");
+      const email = await ask("E-mail: ");
+      const phone = await ask("Telefone: ");
+
+      await this.service.create(name, email, phone);
       console.log("\n✅ Cliente cadastrado com sucesso!");
     } catch (error) {
       if (error instanceof Error) {
@@ -51,12 +47,7 @@ export class ClientController {
       const name = await ask("Novo nome: ");
       const email = await ask("Novo e-mail: ");
       const phone = await ask("Novo telefone: ");
-      const updateService = await this.service.update(
-        id,
-        name,
-        email,
-        phone,
-      );
+      const updateService = await this.service.update(id, name, email, phone);
       console.log("\n✅ Cliente atualizado com sucesso!");
     } catch (error) {
       if (error instanceof Error) {

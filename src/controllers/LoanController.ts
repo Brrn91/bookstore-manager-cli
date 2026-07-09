@@ -5,11 +5,12 @@ export class LoanController {
   private service = new LoanService();
 
   async create() {
-    console.log("\n--- Cadastrar Empréstimo ---");
-    const bookId = await askNumber("ID do livro: ");
-    const clientId = await askNumber("ID do cliente: ");
-    const duoDate = await ask("Data prevista de devolução: ");
     try {
+      console.log("\n--- Cadastrar Empréstimo ---");
+      const bookId = await askNumber("ID do livro: ");
+      const clientId = await askNumber("ID do cliente: ");
+      const duoDate = await ask("Data prevista de devolução: ");
+
       await this.service.create(bookId, clientId, duoDate);
       console.log("\n✅ Empréstimo cadastrado com sucesso!");
     } catch (error) {

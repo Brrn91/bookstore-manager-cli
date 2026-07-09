@@ -2,6 +2,7 @@ import { ask } from "../utils/inputHelper";
 import { authorMenu } from "./authorMenu";
 import { bookMenu } from "./bookMenu";
 import { clientMenu } from "./clientMenu";
+import { loanMenu } from "./loanMenu";
 
 export async function mainMenu(): Promise<void> {
   let running = true;
@@ -14,6 +15,7 @@ export async function mainMenu(): Promise<void> {
 1. Autores
 2. Livros
 3. Clientes
+4. Empréstimos
 0. Encerrar aplicação
 =============================================`);
     const option = await ask("Escolha uma opção: ");
@@ -27,6 +29,9 @@ export async function mainMenu(): Promise<void> {
         break;
       case "3":
         await clientMenu();
+        break;
+      case "4":
+        await loanMenu();
         break;
       case "0":
         running = false;
