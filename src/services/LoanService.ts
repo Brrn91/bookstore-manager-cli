@@ -23,4 +23,26 @@ export class LoanService {
     await this.bookRepository.decrementAvailableCopies(bookId);
     return resultado;
   }
+
+  async findAll() {
+    return await this.repository.findAll();
+  }
+
+  async getById(id: number): Promise<Loan> {
+    const loan = await this.repository.findById(id);
+    if (!loan) {
+      throw new AppError(`Empréstimo com id ${id} não encontrado.`);
+    }
+    return loan;
+  }
+
+  async registerReturn(id: number) {
+    const loan = await this.getById(id);
+    if (loan.status === "DEVOLVIDO") {
+      throw new AppError(`Esse livro já foi devolvido!`);
+    }
+
+    await this.repository.registerReturn(id);
+    await this.bookRepository.incrementAvailableCopies(loan.bookId);
+  }
 }
