@@ -19,7 +19,7 @@ CREATE TABLE clients (
     id SERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
-    phone VARCHAR(13)
+    phone VARCHAR(20)
 );
 
 CREATE TABLE loans (
