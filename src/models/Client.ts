@@ -1,13 +1,13 @@
 export class Client {
   name: string;
-  phone: string;
   email: string;
+  phone: string;
   id?: number;
 
-  constructor(name: string, phone: string, email: string, id?: number) {
+  constructor(name: string, email: string, phone: string, id?: number) {
     this.name = name;
-    this.phone = phone;
     this.email = email;
+    this.phone = phone;
     this.id = id;
   }
 }
