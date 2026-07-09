@@ -22,7 +22,12 @@ export class LoanRepository {
   }
 
   async findById(id: number): Promise<Loan | undefined> {
-    const result = await pool.query("SELECT * FROM loans WHERE id = $1", [id]);
+    const result = await pool.query(
+      `SELECT id, book_id AS "bookId", client_id AS "clientId", loan_date AS "loanDate",
+            due_date AS "dueDate", return_date AS "returnDate", status
+     FROM loans WHERE id = $1`,
+      [id],
+    );
     return result.rows[0];
   }
 

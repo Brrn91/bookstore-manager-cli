@@ -17,7 +17,6 @@ export class LoanService {
     if (book.availableCopies <= 0) {
       throw new AppError("livro sem exemplares disponíveis");
     }
-
     const loan = new Loan(bookId, clientId, dueDate);
     const resultado = await this.repository.create(loan);
     await this.bookRepository.decrementAvailableCopies(bookId);

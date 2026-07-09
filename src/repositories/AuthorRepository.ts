@@ -15,9 +15,10 @@ export class AuthorRepository {
   }
 
   async findById(id: number): Promise<Author | undefined> {
-    const result = await pool.query("SELECT * FROM authors WHERE id = $1", [
-      id,
-    ]);
+    const result = await pool.query(
+      `SELECT id, name, nationality, birth_date AS "birthDate" FROM authors WHERE id = $1`,
+      [id],
+    );
     return result.rows[0];
   }
 

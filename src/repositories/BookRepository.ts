@@ -26,7 +26,12 @@ export class BookRepository {
   }
 
   async findById(id: number): Promise<Book | undefined> {
-    const result = await pool.query("SELECT * FROM books WHERE id = $1", [id]);
+    const result = await pool.query(
+      `SELECT id, title, author_id AS "authorId", genre, published_year AS "publishedYear",
+            total_copies AS "totalCopies", available_copies AS "availableCopies"
+     FROM books WHERE id = $1`,
+      [id],
+    );
     return result.rows[0];
   }
 
