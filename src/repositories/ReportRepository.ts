@@ -43,14 +43,14 @@ export class ReportRepository {
     return result.rows;
   }
 
-    async clientsWithActiveLoans(): Promise<any[]> {
+  async clientsWithActiveLoans(): Promise<any[]> {
     const result = await pool.query(`
-        SELECT b.title, COUNT(l.id) AS "totalLoans"
-        FROM books b
-        LEFT JOIN loans l ON l.book_id = b.id
-        GROUP BY b.title
-        ORDER BY "totalLoans" DESC
-        LIMIT 10`);
+        SELECT colunas
+        FROM tabela_principal
+        JOIN outra_tabela ON condição
+        WHERE condição
+        GROUP BY colunas
+        ORDER BY coluna`);
     return result.rows;
   }
 }
