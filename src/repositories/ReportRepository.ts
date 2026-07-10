@@ -10,4 +10,15 @@ export class ReportRepository {
         ORDER BY b.title ASC`);
     return result.rows;
   }
+
+  async loanedBooks(): Promise<any[]> {
+    const result = await pool.query(`
+        SELECT b.title, c.name AS "clientName", l.loan_date AS "loanDate", l.due_date AS "dueDate"
+        FROM loans l
+        INNER JOIN books b ON b.id = l.book_id
+        INNER JOIN clients c ON c.id = l.client_id
+        WHERE l.status = 'ATIVO'
+        ORDER BY l.due_date ASC`);
+    return result.rows;
+  }
 }
