@@ -21,4 +21,14 @@ export class ReportRepository {
         ORDER BY l.due_date ASC`);
     return result.rows;
   }
+
+  async booksByAuthor(): Promise<any[]> {
+    const result = await pool.query(`
+        SELECT a.name AS "authorName", COUNT(b.id) AS "totalBooks"
+        FROM authors a
+        LEFT JOIN books b ON b.author_id = a.id
+        GROUP BY a.name
+        ORDER BY "totalBooks" DESC, a.name ASC`);
+    return result.rows;
+  }
 }
