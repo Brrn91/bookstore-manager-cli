@@ -42,4 +42,15 @@ export class ReportRepository {
         LIMIT 10`);
     return result.rows;
   }
+
+    async clientsWithActiveLoans(): Promise<any[]> {
+    const result = await pool.query(`
+        SELECT b.title, COUNT(l.id) AS "totalLoans"
+        FROM books b
+        LEFT JOIN loans l ON l.book_id = b.id
+        GROUP BY b.title
+        ORDER BY "totalLoans" DESC
+        LIMIT 10`);
+    return result.rows;
+  }
 }
