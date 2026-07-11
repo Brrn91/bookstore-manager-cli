@@ -3,6 +3,7 @@ import { authorMenu } from "./authorMenu";
 import { bookMenu } from "./bookMenu";
 import { clientMenu } from "./clientMenu";
 import { loanMenu } from "./loanMenu";
+import { reportMenu } from "./reportMenu";
 
 export async function mainMenu(): Promise<void> {
   let running = true;
@@ -16,6 +17,7 @@ export async function mainMenu(): Promise<void> {
 2. Livros
 3. Clientes
 4. Empréstimos
+5. Relatórios
 0. Encerrar aplicação
 =============================================`);
     const option = await ask("Escolha uma opção: ");
@@ -32,6 +34,9 @@ export async function mainMenu(): Promise<void> {
         break;
       case "4":
         await loanMenu();
+        break;
+      case "5":
+        await reportMenu();
         break;
       case "0":
         running = false;
