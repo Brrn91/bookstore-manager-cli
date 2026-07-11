@@ -45,12 +45,12 @@ export class ReportRepository {
 
   async clientsWithActiveLoans(): Promise<any[]> {
     const result = await pool.query(`
-        SELECT colunas
-        FROM tabela_principal
-        JOIN outra_tabela ON condição
-        WHERE condição
-        GROUP BY colunas
-        ORDER BY coluna`);
+      SELECT c.name AS "clientName", c.email, COUNT(l.id) AS "activeLoans"
+      FROM clients c
+      INNER JOIN loans l ON l.client_id = c.id
+      WHERE l.status = 'ATIVO'
+      GROUP BY c.name, c.email
+      ORDER BY "activeLoans" DESC`);
     return result.rows;
   }
 }
