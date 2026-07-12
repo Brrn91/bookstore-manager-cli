@@ -21,12 +21,18 @@ export class AuthorController {
   }
 
   async list() {
-    console.log("\n--- Listando Autores ---");
-    const listAuthors = await this.service.findAll();
-    for (const author of listAuthors) {
-      console.log(author.name);
+    try {
+      console.log("\n--- Listando Autores ---");
+      const listAuthors = await this.service.findAll();
+      for (const author of listAuthors) {
+        console.log(author.name);
+      }
+      console.log("\n✅ Autores listados com sucesso!");
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
     }
-    console.log("\n✅ Autores listados com sucesso!");
   }
 
   async findById() {

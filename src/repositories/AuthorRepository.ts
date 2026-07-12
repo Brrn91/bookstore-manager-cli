@@ -32,4 +32,12 @@ export class AuthorRepository {
   async remove(id: number): Promise<void> {
     await pool.query("DELETE FROM authors WHERE id = $1", [id]);
   }
+
+  async hasBooks(authorId: number): Promise<boolean> {
+    const result = await pool.query(
+      'SELECT EXISTS(SELECT 1 FROM books WHERE author_id = $1) AS "exists"',
+      [authorId],
+    );
+    return result.rows[0].exists;
+  }
 }

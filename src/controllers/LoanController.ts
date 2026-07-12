@@ -21,12 +21,20 @@ export class LoanController {
   }
 
   async list() {
-    console.log("\n--- Listando Empréstimos ---");
-    const listLoans = await this.service.findAll();
-    for (const loan of listLoans) {
-      console.log(`${loan.bookTitle} - ${loan.clientName} - ${loan.loanDate}`);
+    try {
+      console.log("\n--- Listando Empréstimos ---");
+      const listLoans = await this.service.findAll();
+      for (const loan of listLoans) {
+        console.log(
+          `${loan.bookTitle} - ${loan.clientName} - ${loan.loanDate}`,
+        );
+      }
+      console.log("\n✅ Empréstimos listados com sucesso!");
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
     }
-    console.log("\n✅ Empréstimos listados com sucesso!");
   }
 
   async registerReturn() {

@@ -6,12 +6,12 @@ export class BookController {
 
   async create() {
     try {
-    console.log("\n--- Cadastrar Livro ---");
-    const title = await ask("Título: ");
-    const authorId = await askNumber("Autor(a): ");
-    const genre = await ask("Gênero: ");
-    const publishedYear = await askNumber("Ano de publicação: ");
-    const totalCopies = await askNumber("Total de cópias: ");
+      console.log("\n--- Cadastrar Livro ---");
+      const title = await ask("Título: ");
+      const authorId = await askNumber("Autor(a): ");
+      const genre = await ask("Gênero: ");
+      const publishedYear = await askNumber("Ano de publicação: ");
+      const totalCopies = await askNumber("Total de cópias: ");
 
       await this.service.create(
         title,
@@ -29,12 +29,18 @@ export class BookController {
   }
 
   async list() {
-    console.log("\n--- Listando Livros ---");
-    const listBooks = await this.service.findAll();
-    for (const book of listBooks) {
-      console.log(book.title);
+    try {
+      console.log("\n--- Listando Livros ---");
+      const listBooks = await this.service.findAll();
+      for (const book of listBooks) {
+        console.log(book.title);
+      }
+      console.log("\n✅ Livros listados com sucesso!");
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
     }
-    console.log("\n✅ Livros listados com sucesso!");
   }
 
   async findById() {

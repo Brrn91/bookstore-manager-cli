@@ -37,8 +37,16 @@ export class AuthorService {
     return await this.repository.update(id, author);
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<void> {
     await this.getById(id);
+
+    const hasBooks = await this.repository.hasBooks(id);
+    if (hasBooks) {
+      throw new AppError(
+        "Não é possível remover este autor, pois há livros cadastrados vinculados a ele.",
+      );
+    }
+
     await this.repository.remove(id);
   }
 }

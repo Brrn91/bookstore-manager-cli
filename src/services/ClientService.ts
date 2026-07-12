@@ -39,8 +39,16 @@ export class ClientService {
     return await this.repository.update(id, client);
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<void> {
     await this.getById(id);
+
+    const hasLoans = await this.repository.hasLoans(id);
+    if (hasLoans) {
+      throw new AppError(
+        "Não é possível remover este cliente, pois há empréstimos vinculados a ele.",
+      );
+    }
+
     await this.repository.remove(id);
   }
 }

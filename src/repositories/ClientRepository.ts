@@ -38,4 +38,12 @@ export class ClientRepository {
     ]);
     return result.rows[0];
   }
+
+  async hasLoans(clientId: number): Promise<boolean> {
+    const result = await pool.query(
+      'SELECT EXISTS(SELECT 1 FROM loans WHERE client_id = $1) AS "exists"',
+      [clientId],
+    );
+    return result.rows[0].exists;
+  }
 }

@@ -20,14 +20,20 @@ export class ClientController {
     }
   }
 
-  async list() {
+async list() {
+  try {
     console.log("\n--- Listando Clientes ---");
     const listClients = await this.service.findAll();
     for (const client of listClients) {
       console.log(client.name);
     }
     console.log("\n✅ Clientes listados com sucesso!");
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log(error.message);
+    }
   }
+}
 
   async findById() {
     try {
