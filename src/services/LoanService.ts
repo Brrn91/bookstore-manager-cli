@@ -4,6 +4,7 @@ import { BookService } from "./BookService";
 import { ClientService } from "./ClientService";
 import { Loan } from "../models/Loan";
 import { AppError } from "../utils/errors";
+import { validateDateFormat } from "../utils/validators";
 
 export class LoanService {
   private repository = new LoanRepository();
@@ -12,6 +13,7 @@ export class LoanService {
   private clientService = new ClientService();
 
   async create(bookId: number, clientId: number, dueDate: string) {
+    validateDateFormat(dueDate, "data de devolução");
     const book = await this.bookService.getById(bookId);
     const client = await this.clientService.getById(clientId);
     if (book.availableCopies <= 0) {
