@@ -218,3 +218,7 @@ Ao iniciar a aplicação, o menu principal é exibido:
 ## Integrante
 
 - Lucas Bruno da Costa Mafra
+
+## Link do Kanban
+
+- [Kanban](https://github.com/users/Brrn91/projects/3/views/1)
