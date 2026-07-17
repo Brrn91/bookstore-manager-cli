@@ -1,3 +1,12 @@
+-- =========================================================
+-- BookStore Manager CLI - Script de criação do banco de dados
+-- =========================================================
+
+DROP TABLE IF EXISTS loans CASCADE;
+DROP TABLE IF EXISTS books CASCADE;
+DROP TABLE IF EXISTS clients CASCADE;
+DROP TABLE IF EXISTS authors CASCADE;
+
 CREATE TABLE authors (
     id SERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
@@ -31,3 +40,8 @@ CREATE TABLE loans (
     return_date TIMESTAMP,
     status VARCHAR(20) NOT NULL DEFAULT 'ATIVO'
 );
+
+CREATE INDEX idx_books_author_id ON books(author_id);
+CREATE INDEX idx_loans_book_id ON loans(book_id);
+CREATE INDEX idx_loans_client_id ON loans(client_id);
+CREATE INDEX idx_loans_status ON loans(status);
