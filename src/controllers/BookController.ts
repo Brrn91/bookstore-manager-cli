@@ -8,7 +8,7 @@ export class BookController {
     try {
       console.log("\n--- Cadastrar Livro ---");
       const title = await ask("Título: ");
-      const authorId = await askNumber("Autor(a): ");
+      const authorId = await askNumber("Id do Autor(a): ");
       const genre = await ask("Gênero: ");
       const publishedYear = await askNumber("Ano de publicação: ");
       const totalCopies = await askNumber("Total de cópias: ");
@@ -59,7 +59,7 @@ export class BookController {
     try {
       const id = await askNumber("ID do livro: ");
       const title = await ask("Novo título: ");
-      const idAuthor = await askNumber("Novo(a) Autor: ");
+      const idAuthor = await askNumber("Id do Autor(a): ");
       const genre = await ask("Novo gênero: ");
       const publishedYear = await askNumber("Novo ano de publicação: ");
       const totalCopies = await askNumber("Novo total de cópias: ");

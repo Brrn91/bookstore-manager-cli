@@ -9,7 +9,7 @@ export class ReportController {
       const rows = await this.service.availableBooks();
       for (const row of rows) {
         console.log(
-          `${row.title} | Autor: ${row.authorName} | Disponíveis: ${row.availableCopies}`,
+          `${row.title} | Autor(a): ${row.authorName} | Disponíveis: ${row.availableCopies}`,
         );
       }
     } catch (error) {
@@ -25,7 +25,7 @@ export class ReportController {
       const rows = await this.service.loanedBooks();
       for (const row of rows) {
         console.log(
-          `Nome do cliente: ${row.clientName} | Data do empréstimo: ${row.loanDate} | Data de devolução: ${row.dueDate}`,
+          `Nome do cliente: ${row.clientName} | Data do empréstimo (AAAA-MM-DD): ${row.loanDate} | Data de devolução (AAAA-MM-DD): ${row.dueDate}`,
         );
       }
     } catch (error) {

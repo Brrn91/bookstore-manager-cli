@@ -70,7 +70,7 @@ export class AuthorController {
 
   async remove() {
     try {
-      const id = await askNumber("ID do autor: ");
+      const id = await askNumber("ID do autor(a): ");
       await this.service.remove(id);
 
       console.log("\n✅ Autor deletado com sucesso!");

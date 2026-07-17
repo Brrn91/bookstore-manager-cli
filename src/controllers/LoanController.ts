@@ -9,7 +9,7 @@ export class LoanController {
       console.log("\n--- Cadastrar Empréstimo ---");
       const bookId = await askNumber("ID do livro: ");
       const clientId = await askNumber("ID do cliente: ");
-      const duoDate = await ask("Data prevista de devolução: ");
+      const duoDate = await ask("Data prevista de devolução (AAAA-MM-DD): ");
 
       await this.service.create(bookId, clientId, duoDate);
       console.log("\n✅ Empréstimo cadastrado com sucesso!");
